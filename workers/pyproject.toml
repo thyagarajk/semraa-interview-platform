@@ -41,9 +41,9 @@ strict = true
 python_version = "3.12"
 plugins = ["pydantic.mypy"]
 
-# Model runtimes used by the M1 spike ship no type information.
+# Model runtimes used by the M1 spike: optional extras (absent in CI) or untyped.
 [[tool.mypy.overrides]]
-module = ["faster_whisper", "sherpa_onnx", "onnxruntime", "pynvml", "soundfile", "sounddevice", "scipy.*", "torch", "parler_tts", "transformers", "kokoro_onnx"]
+module = ["faster_whisper", "sherpa_onnx", "onnxruntime", "pynvml", "soundfile", "sounddevice", "scipy.*", "torch", "parler_tts", "transformers", "kokoro_onnx", "huggingface_hub"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
