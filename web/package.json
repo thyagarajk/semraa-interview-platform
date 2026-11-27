@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "eslint projects",
     "build:all": "ng build candidate && ng build college",
-    "test:ci": "ng test candidate --watch=false && ng test college --watch=false",
+    "test:ci": "ng test candidate --watch=false && ng test college --watch=false && ng test ui-kit --watch=false && ng test auth --watch=false && ng test reporting --watch=false",
     "format:check": "prettier --check \"projects/**/*.{ts,html,scss,json}\""
   },
   "private": true,
