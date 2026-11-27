@@ -67,7 +67,7 @@ Full report: `Docs/spikes/M1-voice-spike.md`. Code: `workers/spike/` (CLI `semra
 
 ## Next steps
 
-1. Thyagu reviews `Docs/spikes/M1-voice-spike.md` and the `m1-voice-spike` branch.
+1. Thyagu follows the step-by-step guide `Docs/guides/M1-your-steps.md` (GPU re-run, real recordings, Tamil review, licence check). Also reviews `Docs/spikes/M1-voice-spike.md` and PR #2.
 2. Re-run M1 on the RTX 5070 Ti machine with one command (see the report's top box): `uv sync --all-packages --extra models --extra tamil`, then `uv run semraa-spike bench --pipeline-llm qwen3:8b qwen3.5:9b qwen3:14b`.
 3. Try the Tamil mitigations there (short pre-rendered openers and questions, Parler on its own GPU time, `torch.compile`), and record ~10 real English and Tamil answers (with consent) for a real WER.
 4. Decide go/no-go for Tamil and the LLM size (8B vs 14B), then open the M1 PR and start M2.
