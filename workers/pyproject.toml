@@ -1,0 +1,33 @@
+# Virtual uv workspace for the Semraa Python AI workers (STT, TTS, LLM).
+# Model dependencies arrive with the M1 voice spike.
+
+[tool.uv.workspace]
+members = ["common", "stt", "tts", "llm"]
+
+[tool.uv.sources]
+semraa-worker-common = { workspace = true }
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.8", "mypy>=1.13", "httpx>=0.28"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "ASYNC", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["semraa_worker_common", "semraa_stt", "semraa_tts", "semraa_llm"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S101"]
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["common/tests", "stt/tests", "tts/tests", "llm/tests"]
+addopts = "--import-mode=importlib"

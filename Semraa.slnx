@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/Semraa.SharedKernel/Semraa.SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/src/Host/">
+    <Project Path="src/Host/Semraa.Api/Semraa.Api.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Identity/">
+    <Project Path="src/Modules/Identity/Semraa.Identity.Contracts/Semraa.Identity.Contracts.csproj" />
+    <Project Path="src/Modules/Identity/Semraa.Identity/Semraa.Identity.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Tenancy/">
+    <Project Path="src/Modules/Tenancy/Semraa.Tenancy.Contracts/Semraa.Tenancy.Contracts.csproj" />
+    <Project Path="src/Modules/Tenancy/Semraa.Tenancy/Semraa.Tenancy.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Semraa.Api.Tests/Semraa.Api.Tests.csproj" />
+    <Project Path="tests/Semraa.ArchitectureTests/Semraa.ArchitectureTests.csproj" />
+    <Project Path="tests/Semraa.SharedKernel.Tests/Semraa.SharedKernel.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,9 @@
+title = "Semraa gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "False positives: container image references such as valkey/valkey:<tag> match generic-api-key."
+regexTarget = "line"
+regexes = ['''^\s*image:\s*[\w./-]+:[\w.-]+\s*$''']

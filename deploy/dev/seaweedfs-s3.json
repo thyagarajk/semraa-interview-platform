@@ -1,0 +1,9 @@
+{
+  "identities": [
+    {
+      "name": "semraa-dev",
+      "credentials": [{ "accessKey": "semraa-dev", "secretKey": "change-me-s3" }],
+      "actions": ["Read", "Write", "List", "Tagging"]
+    }
+  ]
+}
