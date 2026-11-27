@@ -78,6 +78,55 @@ def detect_turn(vad: SileroVad, cfg: EndOfTurnConfig, audio: Audio, clock: Clock
     return DetectedTurn(start.speech_start_ms, end, end, per_frame, False)
 
 
+@dataclass(frozen=True)
+class LiveTurn:
+    audio: Audio  # buffered microphone audio; `detected` times are relative to its first sample
+    detected: DetectedTurn
+
+
+class LiveSegmenter:
+    """Microphone-side end-of-turn segmentation: feed (frame, VAD probability) pairs one at a time.
+
+    While nobody is speaking only a short pre-roll is kept, so an idle microphone never grows the buffer.
+    """
+
+    def __init__(self, cfg: EndOfTurnConfig) -> None:
+        self._det = EndOfTurnDetector(cfg)
+        self._buf: list[Audio] = []
+        self._open = False
+        # Enough to cover a burst still being counted towards min_speech_ms, plus the STT lead-in pad.
+        keep_ms = cfg.end_silence_ms + cfg.min_speech_ms + SEGMENT_PAD_BEFORE_S * 1000 + cfg.frame_ms
+        self._keep_frames = int(-(-keep_ms // cfg.frame_ms))
+
+    @property
+    def buffered_frames(self) -> int:
+        return len(self._buf)
+
+    def clear(self) -> None:
+        """Forget buffered audio (after a turn, and after dropping what the mic heard meanwhile)."""
+        self._buf.clear()
+        self._open = False
+
+    def push(self, frame: Audio, prob: float) -> TurnEventKind | LiveTurn | None:
+        self._buf.append(frame)
+        event = self._det.update(prob)
+        if event is None:
+            if not self._open and len(self._buf) > self._keep_frames:
+                del self._buf[: len(self._buf) - self._keep_frames]
+            return None
+        if event.kind is TurnEventKind.SPEECH_START:
+            self._open = True
+            return TurnEventKind.SPEECH_START
+        audio = np.concatenate(self._buf).astype(np.float32)
+        offset = self._det.now_ms - len(audio) * 1000 / SAMPLE_RATE
+        detected = DetectedTurn(
+            max(0.0, event.speech_start_ms - offset), event.last_speech_end_ms - offset,
+            event.at_ms - offset, 0.0, True,
+        )  # fmt: skip
+        self.clear()
+        return LiveTurn(audio, detected)
+
+
 def run_turn(
     c: Components,
     audio: Audio,

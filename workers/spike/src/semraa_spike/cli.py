@@ -173,40 +173,45 @@ def _mic_loop(comp: Any, args: argparse.Namespace) -> int:
     import numpy as np
     import sounddevice as sd
 
-    from semraa_spike.pipeline import DetectedTurn, run_turn
-    from semraa_spike.vad import FRAME_SAMPLES, SAMPLE_RATE, EndOfTurnDetector, TurnEventKind
+    from semraa_spike.pipeline import DetectedTurn, LiveSegmenter, LiveTurn, run_turn
+    from semraa_spike.vad import FRAME_SAMPLES, SAMPLE_RATE
 
     frames: queue.Queue[Any] = queue.Queue()
 
     def callback(indata: Any, _n: int, _t: Any, _s: Any) -> None:
         frames.put(indata[:, 0].copy())
 
-    det = EndOfTurnDetector(comp.eot)
-    buf: list[Any] = []
+    seg = LiveSegmenter(comp.eot)
+    play = _player()
+    print("warming up ...")  # one silent turn (nothing played) so the first real answer is not a cold start
+    silence = np.zeros(SAMPLE_RATE, dtype=np.float32)
+    run_turn(comp, silence, args.question, detected=DetectedTurn(0.0, 1000.0, 1000.0, 0.0, True))
+    comp.vad.reset()
     print(f"listening (end of answer after {comp.eot.end_silence_ms:.0f} ms silence), Ctrl+C to stop")
     with sd.InputStream(samplerate=SAMPLE_RATE, channels=1, dtype="float32", blocksize=FRAME_SAMPLES,
                         callback=callback):  # fmt: skip
         try:
             while True:
                 frame = frames.get()
-                buf.append(frame)
-                ev = det.update(comp.vad(frame))
+                ev = seg.push(frame, comp.vad(frame))
                 if ev is None:
                     continue
-                if ev.kind is TurnEventKind.SPEECH_START:
+                if not isinstance(ev, LiveTurn):  # TurnEventKind.SPEECH_START
                     print("  ... speech")
                     continue
-                audio = np.concatenate(buf).astype(np.float32)
-                offset = det.now_ms - len(audio) * 1000 / SAMPLE_RATE
-                turn = DetectedTurn(ev.speech_start_ms - offset, ev.last_speech_end_ms - offset,
-                                    ev.at_ms - offset, 0.0, True)  # fmt: skip
-                r = run_turn(comp, audio, args.question, on_audio=_player(), detected=turn)
-                _print_turn(r, args.show_text)
-                buf.clear()
+                print("  ... thinking")
+                try:
+                    r = run_turn(comp, ev.audio, args.question, on_audio=play, detected=ev.detected)
+                    _print_turn(r, args.show_text)
+                except Exception as exc:  # one bad turn (Ollama hiccup, audio glitch) must not end it all
+                    print(f"  ! turn failed: {type(exc).__name__}: {exc}")
                 while not frames.empty():  # drop what the mic heard while the AI was speaking
                     frames.get_nowait()
+                seg.clear()
                 comp.vad.reset()
+                print("listening")
         except KeyboardInterrupt:
+            print("stopped")
             return 0
 
 
