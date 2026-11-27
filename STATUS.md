@@ -28,6 +28,14 @@
 - Consent/age/retention rules per section 8 (legal review before pilot).
 - Hardware: laptop for dev; GPU machine (RTX 5070 Ti 16 GB) for voice/AI tests, 1 concurrent interview.
 
+## Design standard (Thyagu, 27 Nov 2026)
+
+The UI must look stunning and beautiful, not just functional. From M2 on, every screen gets a real design pass:
+a shared design system in `@semraa/ui-kit` (colour tokens with light and dark themes, typography scale, spacing,
+motion), polished components, considered empty/loading/error states, and responsive layouts that stay fast on a
+cheap Android phone and a college lab PC (bundle budgets and accessibility still apply). Screens are reviewed with
+screenshots before merge.
+
 ## Milestones
 
 Roadmap from architecture doc section 7. Each milestone needs Thyagu's review and approval before the next starts.
@@ -78,3 +86,4 @@ Roadmap from architecture doc section 7. Each milestone needs Thyagu's review an
 
 - 27 Nov 2026 – Status file created. Project state mapped: docs only, no code.
 - 27 Nov 2026 – Git set up, first commit pushed to `main`. M0 built and opened as a PR.
+- 27 Nov 2026 – Thyagu set the design standard (stunning, beautiful UI) and approved merging M0.
