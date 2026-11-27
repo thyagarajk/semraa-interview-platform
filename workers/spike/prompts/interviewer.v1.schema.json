@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "reply": { "type": "string" },
+    "intent": { "type": "string", "enum": ["follow_up", "next_question", "clarify"] },
+    "answer_quality": { "type": "string", "enum": ["weak", "ok", "strong"] }
+  },
+  "required": ["reply", "intent", "answer_quality"],
+  "additionalProperties": false
+}
