@@ -106,6 +106,15 @@ def cmd_bench(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_report(args: argparse.Namespace) -> int:
+    import json
+
+    from semraa_spike.report import to_markdown
+
+    print(to_markdown(json.loads(Path(args.json).read_text(encoding="utf-8"))))
+    return 0
+
+
 def _components(args: argparse.Namespace) -> Any:
     from semraa_spike import bench, models
     from semraa_spike.llm import OllamaClient, load_prompt
@@ -230,6 +239,10 @@ def main(argv: list[str] | None = None) -> int:
     b.add_argument("--skip-captions", action="store_true")
     b.add_argument("--out", help="results directory")
     b.set_defaults(fn=cmd_bench)
+
+    rep = sub.add_parser("report", help="render a results JSON as Markdown tables")
+    rep.add_argument("json")
+    rep.set_defaults(fn=cmd_report)
 
     r = sub.add_parser("run", help="one turn on a WAV file, or a live microphone loop")
     src = r.add_mutually_exclusive_group(required=True)

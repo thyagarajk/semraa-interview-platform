@@ -65,14 +65,16 @@ def to_markdown(r: dict[str, Any]) -> str:
     if r.get("llm"):
         out.append("### LLM sizing (Ollama, num_ctx 4096, temperature 0, seed 42)\n")
         out.append(
-            "| Model | Quant | On GPU | First token p50/p95 ms | Full p50/p95 ms | tok/s | JSON | VRAM MB |"
+            "| Lang | Model | Quant | On GPU | First token p50/p95 ms | Full p50/p95 ms | tok/s | JSON "
+            "| VRAM MB |"
         )
-        out.append("|---|---|---:|---:|---:|---:|---:|---:|")
+        out.append("|---|---|---|---:|---:|---:|---:|---:|---:|")
         for s in r["llm"]:
             ft = s["latency"]["llm_first_token_ms"]
             full = s["latency"]["llm_full_ms"]
             out.append(
-                f"| {s['model']} | {s['quant']} | {s['gpu_share']} | {_ms(ft['p50'])} / {_ms(ft['p95'])} | "
+                f"| {s['lang']} | {s['model']} | {s['quant']} | {s['gpu_share']} | "
+                f"{_ms(ft['p50'])} / {_ms(ft['p95'])} | "
                 f"{_ms(full['p50'])} / {_ms(full['p95'])} | {s['tokens_per_s_mean']:.1f} | "
                 f"{s['json_valid']} | "
                 f"{s['vram_mb']:,} |"

@@ -12,6 +12,7 @@ import numpy as np
 
 from semraa_spike.audio import Audio
 
+FLAN_T5_REVISION = "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a"
 DESCRIPTION = (
     "{speaker} speaks at a moderate pace with a clear, close-sounding voice. "
     "The recording is of very high quality with no background noise."
@@ -39,7 +40,10 @@ class ParlerTts:
             str(cfg.model_dir), torch_dtype=dtype, use_safetensors=True
         ).to(cfg.device)
         self._tok: Any = AutoTokenizer.from_pretrained(str(cfg.model_dir))
-        self._desc_tok: Any = AutoTokenizer.from_pretrained(self._model.config.text_encoder._name_or_path)
+        # Description tokenizer (google/flan-t5-large, Apache-2.0), pinned to an exact revision.
+        self._desc_tok: Any = AutoTokenizer.from_pretrained(
+            self._model.config.text_encoder._name_or_path, revision=FLAN_T5_REVISION
+        )
         self.rate = int(self._model.config.sampling_rate)
         self.name = f"indic-parler-tts ({cfg.device}, {dtype})"
 
