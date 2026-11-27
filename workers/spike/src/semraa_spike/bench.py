@@ -61,13 +61,13 @@ def load_stt(lang: str, variant: str) -> Stt:
     return WhisperStt(WhisperConfig(models.ensure(model), language=lang, compute_type=compute_type))
 
 
-def load_tts(lang: str, int8_tts: bool = False) -> Tts:
+def load_tts(lang: str, int8_tts: bool = False, threads: int = 4) -> Tts:
     if lang == "ta":
         from semraa_spike.tts_parler import ParlerConfig, ParlerSentenceTts, ParlerTts
 
         return ParlerSentenceTts(ParlerTts(ParlerConfig(models.ensure(models.INDIC_PARLER))), "Kavitha")
     model = models.KOKORO_ONNX_INT8 if int8_tts else models.KOKORO_ONNX
-    return KokoroTts(KokoroConfig(models.ensure(model), models.ensure(models.KOKORO_VOICES)))
+    return KokoroTts(KokoroConfig(models.ensure(model), models.ensure(models.KOKORO_VOICES), threads=threads))
 
 
 def bench_stt(lang: str, variant: str, fixtures: list[Fixture]) -> dict[str, Any]:
@@ -143,19 +143,26 @@ def bench_llm(model: str, fixtures: list[Fixture], lang: str, num_gpu: int | Non
 
 
 def bench_pipeline(
-    lang: str, llm_model: str, stt_variant: str, fixtures: list[Fixture], repeats: int, eot: EndOfTurnConfig
+    lang: str,
+    llm_model: str,
+    stt_variant: str,
+    fixtures: list[Fixture],
+    repeats: int,
+    eot: EndOfTurnConfig,
+    tts_threads: int = 4,
+    int8_tts: bool = False,
 ) -> dict[str, Any]:
     from semraa_spike.pipeline import Components, run_turn
 
     client = OllamaClient()
-    for m in client.ps():
-        if m["name"] != llm_model:
-            client.unload(m["name"])
+    for m in client.ps():  # start clean: the LLM must load after STT + TTS
+        client.unload(m["name"])
+    time.sleep(1.0)
     audios = [load_wav(f.audio_path) for f in fixtures]
     with GpuMemorySampler() as gpu:
         # Load order matters on a small GPU: STT + TTS first, then the LLM takes what is left.
         stt = load_stt(lang, stt_variant)
-        tts = load_tts(lang)
+        tts = load_tts(lang, int8_tts=int8_tts, threads=tts_threads)
         client.load(llm_model, num_ctx=4096)
         comp = Components(
             vad=SileroVad(models.ensure(models.SILERO_VAD)),

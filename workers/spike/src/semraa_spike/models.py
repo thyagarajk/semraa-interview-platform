@@ -113,7 +113,7 @@ KOKORO_VOICES = UrlModel(
 CAPTIONS_EN = UrlModel(
     "sherpa-onnx-streaming-zipformer-en-2023-06-26",
     f"{_SHERPA}/asr-models/sherpa-onnx-streaming-zipformer-en-2023-06-26.tar.bz2",
-    "",
+    "639e25b578e9e997131402199419c13a941f8e4e198e2da1ce57dbf5cf401282",
     "Apache-2.0",
     "icefall streaming Zipformer transducer (LibriSpeech + GigaSpeech)",
     archive=True,

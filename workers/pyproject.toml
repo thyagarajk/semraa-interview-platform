@@ -11,6 +11,12 @@ required-environments = [
     "sys_platform == 'linux' and platform_machine == 'x86_64'",
 ]
 
+# PyTorch CUDA 12.8 wheels, used only by the spike's optional "tamil" extra.
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
 [tool.uv.sources]
 semraa-worker-common = { workspace = true }
 

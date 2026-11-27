@@ -35,6 +35,7 @@ def to_markdown(r: dict[str, Any]) -> str:
             f"### Turn latency - {p['lang']} - LLM {p['llm']} - STT {p['stt_variant']} "
             f"({p['turns']} turns, silence {p['eot_silence_ms']:.0f} ms)\n"
         )
+        out.append(f"STT: {p['stt']}; TTS: {p['tts']}\n")
         out.append("| Stage | p50 ms | p95 ms | max ms |")
         out.append("|---|---:|---:|---:|")
         lat = p["latency"]

@@ -108,8 +108,20 @@ def run_turn(
 
     def tts_worker() -> None:
         try:
+            stream = getattr(c.tts, "synth_stream", None)
             while (sentence := sentences.get()) is not None:
                 s0 = clock.now_ms()
+                if stream is not None:  # streaming TTS: first audio = first playable chunk
+                    rate = int(c.tts.rate)  # type: ignore[attr-defined]
+                    for samples in stream(sentence):
+                        if not first_audio_at:
+                            done = clock.now_ms()
+                            first_audio_at.append(done)
+                            first_synth_ms.append(done - s0)
+                        reply_audio.append((samples, rate))
+                        if on_audio is not None:
+                            on_audio(samples, rate)
+                    continue
                 samples, rate = c.tts.synth(sentence)
                 done = clock.now_ms()
                 if not first_audio_at:

@@ -14,7 +14,7 @@ import traceback
 from pathlib import Path
 from typing import Any
 
-DEFAULT_LLMS = ["qwen3:8b", "qwen3.5:9b", "qwen2.5:7b"]
+DEFAULT_LLMS = ["qwen3:8b", "qwen3.5:9b", "qwen2.5:7b", "qwen3:14b"]
 DEFAULT_PIPELINE_LLM = "qwen3:8b"
 
 
@@ -88,11 +88,11 @@ def cmd_bench(args: argparse.Namespace) -> int:
                 r = _try(results, f"llm {lang} {model}", bench.bench_llm, model, fx, lang)
                 if r:
                     results["llm"].append(r)
-        pipe_stt = args.pipeline_stt or ("turbo-fp16" if lang == "en" else "indic-conformer")
+        pipe_stt = args.pipeline_stt or ("turbo-int8" if lang == "en" else "indic-conformer")
         for model in args.pipeline_llm:
             print(f"pipeline {lang} {model} {pipe_stt} x{args.repeats} ...")
-            r = _try(results, f"pipeline {lang} {model}", bench.bench_pipeline,
-                     lang, model, pipe_stt, fx, args.repeats, _eot(args))  # fmt: skip
+            r = _try(results, f"pipeline {lang} {model}", bench.bench_pipeline, lang, model, pipe_stt,
+                     fx, args.repeats, _eot(args), args.tts_threads, args.tts_int8)  # fmt: skip
             if r:
                 results["pipeline"].append(r)
     if "en" in args.lang and not args.skip_captions:
@@ -112,8 +112,8 @@ def _components(args: argparse.Namespace) -> Any:
     from semraa_spike.pipeline import Components
     from semraa_spike.vad import SileroVad
 
-    stt = bench.load_stt(args.lang, args.stt or ("turbo-fp16" if args.lang == "en" else "indic-conformer"))
-    tts = bench.load_tts(args.lang)
+    stt = bench.load_stt(args.lang, args.stt or ("turbo-int8" if args.lang == "en" else "indic-conformer"))
+    tts = bench.load_tts(args.lang, threads=8)
     client = OllamaClient()
     client.load(args.llm, num_ctx=4096)
     return Components(
@@ -223,6 +223,8 @@ def main(argv: list[str] | None = None) -> int:
     b.add_argument("--stt", nargs="+", help="STT variants for the accuracy table")
     b.add_argument("--pipeline-stt", help="STT variant used in the full turn")
     b.add_argument("--repeats", type=int, default=3)
+    b.add_argument("--tts-threads", type=int, default=8, help="Kokoro CPU threads")
+    b.add_argument("--tts-int8", action="store_true", help="int8 Kokoro model")
     b.add_argument("--skip-stt", action="store_true")
     b.add_argument("--skip-llm", action="store_true")
     b.add_argument("--skip-captions", action="store_true")

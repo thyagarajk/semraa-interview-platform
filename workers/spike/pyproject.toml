@@ -26,6 +26,17 @@ models = [
     "nvidia-cublas-cu12>=12.4; sys_platform != 'darwin'",
     "nvidia-cudnn-cu12>=9.1,<10; sys_platform != 'darwin'",
 ]
+# Tamil TTS (Indic Parler-TTS). Install with: uv sync --all-packages --extra models --extra tamil
+tamil = [
+    "torch>=2.8",  # CUDA 12.8 build (Blackwell sm_120 support), from the PyTorch index below
+    "parler-tts==0.2.3",  # pins transformers 4.46.1
+    "torchaudio>=2.8",  # pulled in by the audio codec; pinned to the same CUDA index as torch
+    "sentencepiece>=0.2,<0.2.1",  # newer pb2 needs protobuf 5; descript-audiotools caps protobuf at 4
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
 
 [project.scripts]
 semraa-spike = "semraa_spike.cli:main"
