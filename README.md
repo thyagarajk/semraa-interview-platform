@@ -13,7 +13,7 @@ Design: `Docs/Semraa AI Voice Interview Platform – Review and Target Architect
 | `src/` | .NET 10 modular monolith. `Host/Semraa.Api`, `BuildingBlocks/Semraa.SharedKernel`, `Modules/<Module>/Semraa.<Module>[.Contracts]` |
 | `tests/` | xUnit v3 tests, including architecture tests that enforce module boundaries |
 | `web/` | Angular 22 workspace: apps `candidate` (B2C) and `college`; libs `@semraa/ui-kit`, `auth`, `api-client`, `interview-runtime`, `reporting` |
-| `workers/` | Python 3.12+ uv workspace: `stt`, `tts`, `llm` workers sharing `common` (FastAPI, `/health`, `/ready`) |
+| `workers/` | Python 3.12+ uv workspace: `stt`, `tts`, `llm` workers sharing `common` (FastAPI, `/health`, `/ready`); `spike/` = M1 voice spike CLI `semraa-spike` (see `Docs/spikes/M1-voice-spike.md`) |
 | `deploy/dev/` | Docker Compose dev stack: PostgreSQL, PgBouncer, Keycloak, RabbitMQ, Valkey, SeaweedFS, Mailpit, Ollama |
 | `.github/workflows/` | CI: build, tests, lint, dependency audit, Gitleaks, Trivy |
 

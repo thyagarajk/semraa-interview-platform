@@ -5,10 +5,11 @@
 
 ## Current position
 
-- **Phase:** M0 (repo foundation) built, in review as a pull request on branch `m0-repo-foundation`.
-- **GitHub:** `github.com/thyagarajk/semraa-interview-platform`. `main` has the docs and this file; M0 is in the PR.
-- **Local folder:** `Z:\Semraa\semraa-interview-platform` (Docs + STATUS.md). Link it to the repo after the merge (see "Next steps").
-- **Waiting on:** Thyagu to review and merge the M0 pull request.
+- **Phase:** M1 voice spike done **provisionally on the dev laptop** (RTX 5050, 8 GB), on branch `m1-voice-spike`
+  (not merged). Must be re-run on the RTX 5070 Ti 16 GB machine before the go/no-go is final.
+- **GitHub:** `github.com/thyagarajk/semraa-interview-platform`. `main` has M0 (merged, PR #1).
+- **Local folder:** `Z:\Semraa\semraa-interview-platform` is a git working copy of the repo.
+- **Waiting on:** Thyagu to review the M1 spike report (`Docs/spikes/M1-voice-spike.md`) and run the re-run on the GPU machine.
 
 ## Source documents (read these for detail)
 
@@ -43,18 +44,33 @@ Roadmap from architecture doc section 7. Each milestone needs Thyagu's review an
 | # | Milestone | Status |
 |---|---|---|
 | P | Planning: architecture review, decisions, engineering standards | ✅ Done (27 Nov 2026) |
-| M0 | Repo foundation: git + GitHub, solution/workspace skeletons, standards tooling, docker compose dev stack, CI | 🔍 In review (PR) |
-| M1 | Spike (gate): voice loop on GPU machine, English + Tamil, measure latency / STT error / caption delay, choose LLM size and Tamil models | ⬜ Not started |
+| M0 | Repo foundation: git + GitHub, solution/workspace skeletons, standards tooling, docker compose dev stack, CI | ✅ Done (merged, PR #1) |
+| M1 | Spike (gate): voice loop on GPU machine, English + Tamil, measure latency / STT error / caption delay, choose LLM size and Tamil models | 🟡 Provisional (laptop run done; re-run on GPU machine needed) |
 | M2 | Thin vertical slice: Keycloak + OTP, College app (CSV import, one campaign type), B2C app (sign-up, practice), audio + text modes, final transcription, rubric evaluation, reports, manual invoicing. Pilot. | ⬜ Not started |
 | M3 | Hardening for scale: live captions, scheduling + capacity, review queue, credit ledger + allotments, Razorpay sandbox, maker-checker payments, admission control | ⬜ Not started |
 | M4 | B2B HR (Hiring app), integrity flags, fairness reporting, pricing admin console | ⬜ Not started |
 | M5 | Production readiness: load/security tests, privacy review, runbooks, backup/DR drills, payment live-mode review | ⬜ Not started |
 
+## M1 voice spike: provisional results (laptop, RTX 5050 8 GB)
+
+Full report: `Docs/spikes/M1-voice-spike.md`. Code: `workers/spike/` (CLI `semraa-spike`). Raw numbers: `workers/spike/results/`.
+
+- **English: GO (provisional).** End-of-turn to first AI audio p50 1.12 s, p95 1.63 s (target ≤ 1.5–2 s / ≤ 3 s) with
+  Whisper large-v3-turbo int8 + qwen3:8b + Kokoro v1.0. STT WER 0 % on clean synthetic fixtures. Live captions
+  (sherpa-onnx Zipformer) partial delay p95 537 ms (target ≤ 800 ms). GPU peak 7.0 GB.
+- **Tamil: NO-GO on the laptop.** p50 3.55 s, p95 4.72 s. IndicConformer STT is good (WER 21.9 %, CER 4.3 %; Whisper
+  57 % / 16 %). Indic Parler-TTS is the bottleneck: slower than real time on this GPU, 3/10 renders garbled, and it
+  shares a full 8 GB card with the LLM. Mitigations listed in the report.
+- **LLM size:** qwen3:8b (Q4_K_M, Apache-2.0) for now. qwen3:14b does not fit on 8 GB with STT + TTS (60 % on GPU,
+  9 s to first audio); the 8B vs 14B decision moves to the 16 GB machine.
+- Licence flag for legal: Kokoro's G2P uses espeak-ng and phonemizer (GPL-3.0); fine for a self-run server.
+
 ## Next steps
 
-1. Thyagu reviews the M0 PR, runs it on the laptop (README "Run locally"), and merges.
-2. Link the local folder: in `Z:\Semraa\semraa-interview-platform` run `git init -b main`, `git remote add origin https://github.com/thyagarajk/semraa-interview-platform.git`, `git fetch origin`, `git reset --mixed origin/main` (keeps your files, makes git match `main`), then `git pull`.
-3. Start M1, the voice spike on the GPU machine (English + Tamil latency, STT accuracy, LLM size).
+1. Thyagu reviews `Docs/spikes/M1-voice-spike.md` and the `m1-voice-spike` branch.
+2. Re-run M1 on the RTX 5070 Ti machine with one command (see the report's top box): `uv sync --all-packages --extra models --extra tamil`, then `uv run semraa-spike bench --pipeline-llm qwen3:8b qwen3.5:9b qwen3:14b`.
+3. Try the Tamil mitigations there (short pre-rendered openers and questions, Parler on its own GPU time, `torch.compile`), and record ~10 real English and Tamil answers (with consent) for a real WER.
+4. Decide go/no-go for Tamil and the LLM size (8B vs 14B), then open the M1 PR and start M2.
 
 ### What M0 contains
 
@@ -87,3 +103,4 @@ Roadmap from architecture doc section 7. Each milestone needs Thyagu's review an
 - 27 Nov 2026 – Status file created. Project state mapped: docs only, no code.
 - 27 Nov 2026 – Git set up, first commit pushed to `main`. M0 built and opened as a PR.
 - 27 Nov 2026 – Thyagu set the design standard (stunning, beautiful UI) and approved merging M0.
+- 27 Nov 2026 – M1 voice spike built and run provisionally on the 8 GB laptop (branch `m1-voice-spike`): English GO, Tamil NO-GO on the laptop; re-run on the RTX 5070 Ti pending.
