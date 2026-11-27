@@ -51,5 +51,5 @@ Mailpit: http://localhost:8025. RabbitMQ: http://localhost:15672.
 ```bash
 dotnet build Semraa.slnx -c Release && dotnet test --solution Semraa.slnx -c Release
 cd web && npm run lint && npm run format:check && npm run build:all && npm run test:ci
-cd workers && uv run ruff check . && uv run mypy common/src stt/src tts/src llm/src && uv run pytest -q
+cd workers && uv run ruff check . && uv run mypy common/src stt/src tts/src llm/src spike/src && uv run pytest -q
 ```

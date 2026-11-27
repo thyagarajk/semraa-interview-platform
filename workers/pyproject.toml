@@ -2,7 +2,14 @@
 # Model dependencies arrive with the M1 voice spike.
 
 [tool.uv.workspace]
-members = ["common", "stt", "tts", "llm"]
+members = ["common", "stt", "tts", "llm", "spike"]
+
+# Model wheels (CUDA libs) must resolve for the dev laptop / GPU machine (Windows) and CI / servers (Linux).
+[tool.uv]
+required-environments = [
+    "sys_platform == 'win32' and platform_machine == 'AMD64'",
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+]
 
 [tool.uv.sources]
 semraa-worker-common = { workspace = true }
@@ -18,7 +25,7 @@ target-version = "py312"
 select = ["E", "F", "W", "I", "B", "UP", "S", "ASYNC", "RUF"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["semraa_worker_common", "semraa_stt", "semraa_tts", "semraa_llm"]
+known-first-party = ["semraa_worker_common", "semraa_stt", "semraa_tts", "semraa_llm", "semraa_spike"]
 
 [tool.ruff.lint.per-file-ignores]
 "**/tests/**" = ["S101"]
@@ -28,6 +35,11 @@ strict = true
 python_version = "3.12"
 plugins = ["pydantic.mypy"]
 
+# Model runtimes used by the M1 spike ship no type information.
+[[tool.mypy.overrides]]
+module = ["faster_whisper", "sherpa_onnx", "onnxruntime", "pynvml", "soundfile", "sounddevice", "scipy.*", "torch", "parler_tts", "transformers", "kokoro_onnx"]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
-testpaths = ["common/tests", "stt/tests", "tts/tests", "llm/tests"]
+testpaths = ["common/tests", "stt/tests", "tts/tests", "llm/tests", "spike/tests"]
 addopts = "--import-mode=importlib"
