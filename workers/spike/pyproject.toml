@@ -1,0 +1,49 @@
+[project]
+name = "semraa-spike"
+version = "0.1.0"
+description = "M1 voice spike: VAD -> STT -> LLM -> TTS latency, WER and VRAM measurements (English + Tamil)"
+requires-python = ">=3.12,<3.14"  # model wheels (onnxruntime, ctranslate2) lag new Pythons
+# Core deps stay light so CI (`uv sync --all-packages`) never pulls GPU wheels.
+dependencies = [
+    "httpx>=0.28",
+    "jiwer>=4.0",
+    "numpy>=2.1",
+    "soundfile>=0.13",
+]
+
+[project.optional-dependencies]
+# Real models. Install with: uv sync --all-packages --extra models
+models = [
+    "faster-whisper>=1.2",
+    "sherpa-onnx>=2.0",
+    "kokoro-onnx>=0.6",  # Kokoro v1.0 with espeak-ng G2P, so unknown tech words are spoken
+    "onnxruntime>=1.20",
+    "nvidia-ml-py>=12.560",
+    "sounddevice>=0.5",
+    "huggingface-hub>=0.30",
+    "scipy>=1.14",
+    # CUDA 12 runtime libraries for CTranslate2 (faster-whisper) on Windows/Linux.
+    "nvidia-cublas-cu12>=12.4; sys_platform != 'darwin'",
+    "nvidia-cudnn-cu12>=9.1,<10; sys_platform != 'darwin'",
+]
+# Tamil TTS (Indic Parler-TTS). Install with: uv sync --all-packages --extra models --extra tamil
+tamil = [
+    "torch>=2.8",  # CUDA 12.8 build (Blackwell sm_120 support), from the PyTorch index below
+    "parler-tts==0.2.3",  # pins transformers 4.46.1
+    "torchaudio>=2.8",  # pulled in by the audio codec; pinned to the same CUDA index as torch
+    "sentencepiece>=0.2,<0.2.1",  # newer pb2 needs protobuf 5; descript-audiotools caps protobuf at 4
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
+
+[project.scripts]
+semraa-spike = "semraa_spike.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/semraa_spike"]

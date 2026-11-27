@@ -58,7 +58,7 @@ jobs:
       - run: uv sync --all-packages --locked
       - run: uv run ruff check .
       - run: uv run ruff format --check .
-      - run: uv run mypy common/src stt/src tts/src llm/src
+      - run: uv run mypy common/src stt/src tts/src llm/src spike/src
       - run: uv run pytest -q
       - run: uvx pip-audit --strict --progress-spinner off -r <(uv export --all-packages --no-dev --no-hashes --no-emit-workspace)
         shell: bash

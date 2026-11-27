@@ -28,3 +28,6 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# M1 spike model weights (downloaded, pinned in workers/spike/src/semraa_spike/models.py)
+workers/spike/.models/
