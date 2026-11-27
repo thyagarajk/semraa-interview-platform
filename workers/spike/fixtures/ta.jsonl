@@ -2,9 +2,9 @@
 {"id": "ta02", "voice": "Kavitha", "question": "What is the difference between a stack and a queue?", "text": "ஸ்டாக் கடைசியாக வந்ததை முதலில் வெளியே எடுக்கும். க்யூ முதலில் வந்ததை முதலில் வெளியே எடுக்கும்."}
 {"id": "ta03", "voice": "Jaya", "question": "What is an API?", "text": "ஏபிஐ என்பது இரண்டு மென்பொருட்கள் ஒன்றோடொன்று பேசிக்கொள்ள உதவும் ஒரு வழிமுறை."}
 {"id": "ta04", "voice": "Kavitha", "question": "Why do we use version control?", "text": "கிட் போன்ற பதிப்பு கட்டுப்பாடு கருவிகள் மாற்றங்களைச் சேமிக்கவும் குழுவாக வேலை செய்யவும் உதவுகின்றன."}
-{"id": "ta05", "voice": "Jaya", "question": "What is recursion?", "text": "ஒரு செயல்பாடு தன்னைத்தானே அழைப்பதுதான் ரிகர்ஷன். அதற்கு ஒரு நிறுத்தும் நிபந்தனை கண்டிப்பாக வேண்டும்."}
-{"id": "ta06", "voice": "Kavitha", "question": "What is cloud computing?", "text": "கிளவுட் கம்ப்யூட்டிங் என்றால் சர்வர்களை நாமே வாங்காமல் இணையம் வழியாக வாடகைக்கு பயன்படுத்துவது."}
+{"id": "ta05", "voice": "Kavitha", "question": "What is recursion?", "text": "ஒரு செயல்பாடு தன்னைத்தானே அழைப்பதுதான் ரிகர்ஷன். அதற்கு ஒரு நிறுத்தும் நிபந்தனை கண்டிப்பாக வேண்டும்."}
+{"id": "ta06", "voice": "Jaya", "question": "What is cloud computing?", "text": "கிளவுட் கம்ப்யூட்டிங் என்றால் சர்வர்களை நாமே வாங்காமல் இணையம் வழியாக வாடகைக்கு பயன்படுத்துவது."}
 {"id": "ta07", "voice": "Jaya", "question": "What is a primary key?", "text": "பிரைமரி கீ ஒவ்வொரு வரிசையையும் தனித்தனியாக அடையாளம் காட்டும். அது காலியாக இருக்கக்கூடாது."}
 {"id": "ta08", "voice": "Kavitha", "question": "Explain binary search.", "text": "பைனரி சர்ச் வரிசைப்படுத்தப்பட்ட பட்டியலை ஒவ்வொரு முறையும் பாதியாகப் பிரித்து தேடும்."}
 {"id": "ta09", "voice": "Jaya", "question": "What does HTTP status 404 mean?", "text": "நானூற்று நான்கு என்றால் கேட்ட பக்கம் சர்வரில் இல்லை என்று அர்த்தம்."}
-{"id": "ta10", "voice": "Kavitha", "question": "What is object oriented programming?", "text": "ஆப்ஜெக்ட் ஓரியண்டட் புரோகிராமிங்கில் தரவும் செயல்பாடுகளும் ஒரே பொருளுக்குள் வைக்கப்படுகின்றன."}
+{"id": "ta10", "voice": "Jaya", "question": "What is object oriented programming?", "text": "ஆப்ஜெக்ட் ஓரியண்டட் புரோகிராமிங்கில் தரவும் செயல்பாடுகளும் ஒரே பொருளுக்குள் வைக்கப்படுகின்றன."}
