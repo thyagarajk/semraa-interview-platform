@@ -1,0 +1,811 @@
+{
+  "machine": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.16",
+    "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "gpu_total_mb": 8151
+  },
+  "stt": [
+    {
+      "lang": "en",
+      "variant": "turbo-fp16",
+      "model": "faster-whisper/faster-whisper-large-v3-turbo (cuda, float16)",
+      "wer": 0.0,
+      "cer": 0.0,
+      "n": 10,
+      "ref_words": 278,
+      "latency": {
+        "stt_final_ms": {
+          "n": 10,
+          "p50": 366.8089500069618,
+          "p95": 409.9234800219536,
+          "mean": 374.95503000020983,
+          "max": 427.8675000667572
+        }
+      },
+      "vram_mb": 2327,
+      "hypotheses": {
+        "en01": "A process has its own memory space, while threads inside the same process share memory. So creating a thread is cheaper, but you have to be careful about race conditions.",
+        "en02": "A hash map uses a hash function to convert the key into an index in an array. If two keys land in the same bucket, we handle the collision with chaining or open addressing.",
+        "en03": "Normalization means organizing tables so that the same data is not repeated. For example, we keep customer details in one table and orders in another table linked by a foreign key.",
+        "en04": "binary search takes logarithmic time because every step cuts the search space in half but the array must be sorted first",
+        "en05": "First the browser does a DNS lookup to find the IP address. Then it opens a TCP connection, does the TLS handshake and sends an HTTP request to the server.",
+        "en06": "REST is a style for designing web APIs where each resource has a URL and we use HTTP methods like GET, POST, PUT and DELETE to work with it.",
+        "en07": "SQL databases have a fixed schema and support joins and transactions. NoSQL databases like MongoDB are more flexible and scale horizontally more easily.",
+        "en08": "A deadlock happens when two threads are each waiting for a lock that the other one is holding, so neither of them can continue.",
+        "en09": "Polymorphism means the same method name can behave differently depending on the object. For example, a draw method works differently for a circle and a square.",
+        "en10": "I would loop through the list and put each element into a set. If an element is already in the set, then it is a duplicate. This takes linear time."
+      }
+    },
+    {
+      "lang": "en",
+      "variant": "turbo-int8",
+      "model": "faster-whisper/faster-whisper-large-v3-turbo (cuda, int8_float16)",
+      "wer": 0.0,
+      "cer": 0.0,
+      "n": 10,
+      "ref_words": 278,
+      "latency": {
+        "stt_final_ms": {
+          "n": 10,
+          "p50": 318.5330500006676,
+          "p95": 346.9031650006771,
+          "mean": 317.3823700070381,
+          "max": 360.60490000247955
+        }
+      },
+      "vram_mb": 1224,
+      "hypotheses": {
+        "en01": "A process has its own memory space, while threads inside the same process share memory. So creating a thread is cheaper, but you have to be careful about race conditions.",
+        "en02": "A hash map uses a hash function to convert the key into an index in an array. If two keys land in the same bucket, we handle the collision with chaining or open addressing.",
+        "en03": "Normalization means organizing tables so that the same data is not repeated. For example, we keep customer details in one table and orders in another table linked by a foreign key.",
+        "en04": "binary search takes logarithmic time because every step cuts the search space in half but the array must be sorted first",
+        "en05": "First the browser does a DNS lookup to find the IP address. Then it opens a TCP connection, does the TLS handshake and sends an HTTP request to the server.",
+        "en06": "REST is a style for designing web APIs where each resource has a URL and we use HTTP methods like GET, POST, PUT and DELETE to work with it.",
+        "en07": "SQL databases have a fixed schema and support joins and transactions. NoSQL databases like MongoDB are more flexible and scale horizontally more easily.",
+        "en08": "A deadlock happens when two threads are each waiting for a lock that the other one is holding, so neither of them can continue",
+        "en09": "Polymorphism means the same method name can behave differently depending on the object. For example, a draw method works differently for a circle and a square.",
+        "en10": "I would loop through the list and put each element into a set. If an element is already in the set, then it is a duplicate. This takes linear time."
+      }
+    },
+    {
+      "lang": "en",
+      "variant": "medium-int8",
+      "model": "faster-whisper/faster-whisper-medium (cuda, int8_float16)",
+      "wer": 0.007194244604316547,
+      "cer": 0.0006688963210702341,
+      "n": 10,
+      "ref_words": 278,
+      "latency": {
+        "stt_final_ms": {
+          "n": 10,
+          "p50": 518.5622000098228,
+          "p95": 568.8883499920369,
+          "mean": 508.3834200143814,
+          "max": 569.8464000225067
+        }
+      },
+      "vram_mb": 1160,
+      "hypotheses": {
+        "en01": "A process has its own memory space, while threads inside the same process share memory. So creating a thread is cheaper, but you have to be careful about race conditions.",
+        "en02": "A hash map uses a hash function to convert the key into an index in an array. If two keys land in the same bucket, we handle the collision with chaining or open addressing.",
+        "en03": "Normalization means organizing tables so that the same data is not repeated. For example, we keep customer details in one table and orders in another table linked by a foreign key.",
+        "en04": "Binary search takes logarithmic time because every step cuts the search space in half. But the array must be sorted first.",
+        "en05": "First, the browser does a DNS lookup to find the IP address. Then, it opens a TCP connection, does the TLS handshake and sends an HTTP request to the server.",
+        "en06": "REST is a style for designing web APIs where each resource has a URL and we use HTTP methods like get, post, put and delete to work with it.",
+        "en07": "SQL databases have a fixed schema and support joins and transactions. No SQL databases like MongoDB are more flexible and scale horizontally more easily.",
+        "en08": "A deadlock happens when two threads are each waiting for a lock that the other one is holding, so neither of them can continue.",
+        "en09": "Polymorphism means the same method name can behave differently depending on the object. For example, a draw method works differently for a circle and a square.",
+        "en10": "I would loop through the list and put each element into a set. If an element is already in the set, then it is a duplicate. This takes linear time."
+      }
+    },
+    {
+      "lang": "en",
+      "variant": "small-int8",
+      "model": "faster-whisper/faster-whisper-small (cuda, int8_float16)",
+      "wer": 0.014388489208633094,
+      "cer": 0.002006688963210702,
+      "n": 10,
+      "ref_words": 278,
+      "latency": {
+        "stt_final_ms": {
+          "n": 10,
+          "p50": 254.16414999961853,
+          "p95": 289.8740450143814,
+          "mean": 251.81812999248504,
+          "max": 295.240700006485
+        }
+      },
+      "vram_mb": 424,
+      "hypotheses": {
+        "en01": "A process has its own memory space, while threads inside the same process share memory. So creating a thread is cheaper, but you have to be careful about race conditions.",
+        "en02": "A hash map uses a hash function to convert the key into an index in an array. If two keys land in the same bucket, we handle the collision with chaining or open addressing.",
+        "en03": "Normalization means organizing tables so that the same data is not repeated. For example, we keep customer details in one table and orders in another table linked by a foreign key.",
+        "en04": "Binary search takes logarithmic time because every step cuts the search space in half. But the array must be sorted first.",
+        "en05": "First, the browser does a dns lookup to find the IP address. Then, it opens a TCP connection, does the tlis handshake and sends an HTTP request to the server.",
+        "en06": "REST is a style for designing web IPIs where each resource has a URL and we use HTTP methods like GET, POST, PUT and DELETE to work with it.",
+        "en07": "SQL databases have a fixed schema and support joins and transactions. No SQL databases like MongoDB are more flexible and scale horizontally more easily.",
+        "en08": "A deadlock happens when two threads are each waiting for a lock that the other one is holding, so neither of them can continue.",
+        "en09": "Polymorphism means the same method name can behave differently depending on the object. For example, a draw method works differently for a circle and a square.",
+        "en10": "I would loop through the list and put each element into a set. If an element is already in the set, then it is a duplicate. This takes linear time."
+      }
+    },
+    {
+      "lang": "ta",
+      "variant": "indic-conformer",
+      "model": "indic-conformer-600m (ta, ctc, CPU)",
+      "wer": 0.21904761904761905,
+      "cer": 0.04285714285714286,
+      "n": 10,
+      "ref_words": 105,
+      "latency": {
+        "stt_final_ms": {
+          "n": 10,
+          "p50": 462.6015499830246,
+          "p95": 575.50825496912,
+          "mean": 483.2670300245285,
+          "max": 582.9125999212265
+        }
+      },
+      "vram_mb": 0,
+      "hypotheses": {
+        "ta01": "இன்டெக்ஸ் என்பது ஒரு டேட்டாபேஸ் அட்டவணையில் தேடலை வேகமாக்கும் ஒரு அமைப்பு அது புத்தகத்தின் பின்பக்க அட்டவணை போல வேலி செய்கிறது",
+        "ta02": "ஸ்ராா் கடைசியாக வந்ததை முதலில் வெளியே எடுக்கும் கியூ முதலில் வந்ததை முதலில் வெளியே எடுக்கும்",
+        "ta03": "ஏ பிஐ என்பது இரண்டு மென்பொருட்கள்ள் ஒன்றோடொன்று பேச்ொள்ள உதவும் ஒரு வழிமுறை",
+        "ta04": "கெிறப்போன்ற பதிப்புக் கட்டுப்பாடு கருவிகள் மாற்றங்கேச் சேமிக்கவும் குழுவாக வேலை செய்யவும் உதவுகின்றன",
+        "ta05": "ஒரு செயல்பாடு தன்னைத்தானே அழைப்பதுதான் நிகர்ஷன் அதற்கு ஒரு நிறுத்தும் நிபந்தனை கண்டிப்பாக வேண்டும்",
+        "ta06": "கிளவுட் கம்ப்யூட்டிங் என்றால் சர்வர்களை நாமே வாங்காமல் இணையம் வழியாக வாடகைக்குப் பயன்படுத்துவது",
+        "ta07": "பிரைமரிக்கு ஒவ்வொரு வரிசையையும் தனித்தனியாக அடையாளம் காட்டும் அது காலியாக இருக்கக் கூடாது",
+        "ta08": "பைண சர்ச் வரிசைப்படுத்தப்பட்ட பட்டியலை ஒவ்வொரு முறையும் பாதியாகப் பிரித்துத் தேடும்",
+        "ta09": "நாானூற்றே நான்கு என்றால் கேட்ட பக்கம் சர்வரில் இல்லை என்று அர்த்தம்",
+        "ta10": "ஆப்ஜெக்ட் ஓரியன்டட் புரோக்ிரமிங்கு தரவும் செயல்பாடுகளும் ஒரே பொருளுக்குள் வைக்கப்படுகின்றன"
+      }
+    },
+    {
+      "lang": "ta",
+      "variant": "turbo-fp16",
+      "model": "faster-whisper/faster-whisper-large-v3-turbo (cuda, float16)",
+      "wer": 0.5714285714285714,
+      "cer": 0.15604395604395604,
+      "n": 10,
+      "ref_words": 105,
+      "latency": {
+        "stt_final_ms": {
+          "n": 10,
+          "p50": 473.32870000600815,
+          "p95": 565.4690149903298,
+          "mean": 478.6108200073242,
+          "max": 616.3880000114441
+        }
+      },
+      "vram_mb": 1440,
+      "hypotheses": {
+        "ta01": "இன்றைக்ஸ் என்பது ஒரு டேட்டபேஸ் அட்டவனையில் தேடலை வேகமாக்கும் ஒராமைப்பு. அது புத்தகர்த்தின் பின்பக்கா அட்டவனைப் போல வேலிச்சிகிறது.",
+        "ta02": "சிராக்கடைசியாக வந்ததை முதலில் விழியே இடுக்கும். கியுமுதலில் வந்ததை முதலில் விழியே இடுக்கும்.",
+        "ta03": "API 802 பென்ப்புருக்கல் ஒன்றோடு ஒன்று பேசிக்குள்ள உதவும் ஒரு வழி முறை",
+        "ta04": "கிடுப்போன்ற பதிப்பு கட்டுப்பாடு கருவிகள் மாற்றங்கையில் சேமிக்கவும் குழுவாக வேலை செய்யவும் உதவுகின்றன",
+        "ta05": "ஒரு செயல்பாடு தண்ணைத்தானே அழைப்பதுதான் ரிகர்சின் அதற்கு ஒரு நிறுத்தும் நிவந்தனே கண்டிப்பாக வேண்டும்",
+        "ta06": "கலாவ்ட் கம்பியுட்டிங்க என்றால் சர்வர்களை நாமே வாங்காமல் இனையம் வழியாக வாடகைக்கு பயன் படுத்துவது",
+        "ta07": "பிரைமரிக்கி ஒவ்வறு வருசையிம் தனித்த நியாக அடையாளம் காட்டும் அது காலியாக இருக்கக் கோடாது",
+        "ta08": "பைனை சர்ச் வரி செய்ப்படுத்தப்பட்ட பட்டியலை ஓவுரு முறையும் பாதியாங்க பிரித்து தேடும்",
+        "ta09": "404 என்றால் கேட்டப்பக்கும் சர்வரில் இல்லை என்று அர்த்தம்",
+        "ta10": "அப்ஜெட்ட் ஓரியன்ஜெட் பிரோக்ராம் இங்கு தரவும் செய்லப்பாடுகளும் ஒரே பொருளக்குள் வைக்கப்படிகின்றுன."
+      }
+    }
+  ],
+  "llm": [
+    {
+      "model": "qwen3:8b",
+      "lang": "en",
+      "quant": "Q4_K_M",
+      "params": "8.2B",
+      "num_gpu": null,
+      "loaded_mb": 5328,
+      "gpu_share": 1.0,
+      "latency": {
+        "llm_first_token_ms": {
+          "n": 10,
+          "p50": 74.55580002069473,
+          "p95": 82.20432006716729,
+          "mean": 71.16012003421784,
+          "max": 85.28430008888245
+        },
+        "llm_full_ms": {
+          "n": 10,
+          "p50": 960.5029000043869,
+          "p95": 1047.9030900657176,
+          "mean": 968.8885599970818,
+          "max": 1051.0845000743866
+        }
+      },
+      "tokens_per_s_mean": 47.88615271392937,
+      "json_valid": "10/10",
+      "vram_mb": 5463,
+      "replies": {
+        "en01": "That's a good start. Can you explain why race conditions are a concern in threads?",
+        "en02": "That's a good start. Can you explain how chaining works in more detail?",
+        "en03": "That's a good start. Can you explain why normalization is important in database design?",
+        "en04": "That's a good explanation. Can you explain how the logarithmic time is derived from the steps in binary search?",
+        "en05": "That's a good start. Can you explain how the browser handles the response from the server?",
+        "en06": "That's a good start. Can you explain why HTTP methods are important in REST?",
+        "en07": "That's a good start. Can you explain why horizontal scaling is more straightforward in NoSQL databases?",
+        "en08": "That's a good start. Can you give an example of how this might happen in code?",
+        "en09": "That's a good start. Can you give another example of polymorphism in a different context?",
+        "en10": "That's a good approach. Can you explain how you would handle the order of elements in the list?"
+      }
+    },
+    {
+      "model": "qwen3.5:9b",
+      "lang": "en",
+      "quant": "Q4_K_M",
+      "params": "9.0B",
+      "num_gpu": null,
+      "loaded_mb": 5347,
+      "gpu_share": 1.0,
+      "latency": {
+        "llm_first_token_ms": {
+          "n": 10,
+          "p50": 241.29199999570847,
+          "p95": 245.9236800312996,
+          "mean": 225.40237001180648,
+          "max": 247.69200003147125
+        },
+        "llm_full_ms": {
+          "n": 10,
+          "p50": 1360.4456000328064,
+          "p95": 1597.9458300232889,
+          "mean": 1389.3891700148583,
+          "max": 1676.7239999771118
+        }
+      },
+      "tokens_per_s_mean": 44.07164289960404,
+      "json_valid": "10/10",
+      "vram_mb": 6327,
+      "replies": {
+        "en01": "That is a solid high-level summary. Could you briefly explain how context switching differs between the two?",
+        "en02": "That is a solid high-level overview. Could you briefly explain how you would choose between chaining and open addressing for a specific use case?",
+        "en03": "That is a good high-level summary. Could you briefly mention the different normal forms and what specific problem each one solves?",
+        "en04": "That is correct. Would you also mention the best and worst case scenarios for this complexity?",
+        "en05": "That is a good high-level overview. Could you briefly explain what happens after the server receives that HTTP request?",
+        "en06": "That is a solid high-level definition. Could you briefly explain how statelessness applies in this context?",
+        "en07": "That is a solid high-level distinction. Could you give an example of a specific scenario where you would choose one over the other?",
+        "en08": "That is a correct definition. Can you briefly explain how you would prevent or resolve a deadlock in practice?",
+        "en09": "That is a correct high-level explanation. Could you briefly mention how polymorphism is achieved in Java?",
+        "en10": "That is a solid approach using a hash set for O(n) time complexity. Would you also mention how to handle this if we needed to count the frequency of each duplicate?"
+      }
+    },
+    {
+      "model": "qwen2.5:7b",
+      "lang": "en",
+      "quant": "Q4_K_M",
+      "params": "7.6B",
+      "num_gpu": null,
+      "loaded_mb": 4535,
+      "gpu_share": 1.0,
+      "latency": {
+        "llm_first_token_ms": {
+          "n": 10,
+          "p50": 57.9305499792099,
+          "p95": 64.76802998185158,
+          "mean": 56.5334499835968,
+          "max": 66.03369998931885
+        },
+        "llm_full_ms": {
+          "n": 10,
+          "p50": 839.5403000116348,
+          "p95": 1047.7359649419786,
+          "mean": 856.4700999975205,
+          "max": 1168.9930999279022
+        }
+      },
+      "tokens_per_s_mean": 51.03268866593902,
+      "json_valid": "10/10",
+      "vram_mb": 4633,
+      "replies": {
+        "en01": "That's a good explanation. Can you elaborate on how threads can introduce race conditions and how synchronization mechanisms can help mitigate this issue?",
+        "en02": "That's a good start. Could you explain how chaining works in more detail?",
+        "en03": "That's a good start. Could you explain how normalization helps in reducing data redundancy and improving data integrity?",
+        "en04": "That's correct. Can you explain why sorting the array before applying binary search is necessary?",
+        "en05": "That's correct. Can you explain what happens if the server responds with an HTTP error code?",
+        "en06": "That's a good start. Could you explain how the statelessness of RESTful services works?",
+        "en07": "That's a good start. Could you elaborate on any specific use cases where you might choose one over the other?",
+        "en08": "That's a good explanation. Could you also mention the four necessary conditions for a deadlock to occur?",
+        "en09": "That's a good start. Could you give an example using inheritance to demonstrate polymorphism?",
+        "en10": "That's a good approach. How would you handle a very large list where memory is a concern?"
+      }
+    },
+    {
+      "model": "qwen3:14b",
+      "lang": "en",
+      "quant": "Q4_K_M",
+      "params": "14.8B",
+      "num_gpu": null,
+      "loaded_mb": 9695,
+      "gpu_share": 0.604,
+      "latency": {
+        "llm_first_token_ms": {
+          "n": 10,
+          "p50": 365.20569998025894,
+          "p95": 390.5297600150109,
+          "mean": 352.33377002477647,
+          "max": 402.00800001621246
+        },
+        "llm_full_ms": {
+          "n": 10,
+          "p50": 6620.916599988937,
+          "p95": 8141.100714999438,
+          "mean": 6827.267190003395,
+          "max": 8649.963999986649
+        }
+      },
+      "tokens_per_s_mean": 6.060858832156058,
+      "json_valid": "10/10",
+      "vram_mb": 6007,
+      "replies": {
+        "en01": "Can you explain what a race condition is and why it's a problem when threads share memory?",
+        "en02": "Could you explain how chaining works in more detail?",
+        "en03": "Could you explain why reducing data repetition is important in database design?",
+        "en04": "Can you explain why the time complexity is logarithmic in more detail?",
+        "en05": "Could you explain how the DNS lookup process works in more detail?",
+        "en06": "Could you explain what you mean by 'each resource has a URL'?",
+        "en07": "Could you explain why horizontal scaling is easier with NoSQL databases?",
+        "en08": "Can you explain how deadlocks can be avoided in multithreaded programming?",
+        "en09": "Can you explain how polymorphism is implemented in object-oriented programming?",
+        "en10": "That's a good approach. Could you explain how you would handle duplicates if the list contains non-hashable elements, like lists?"
+      }
+    },
+    {
+      "model": "qwen3:8b",
+      "lang": "ta",
+      "quant": "Q4_K_M",
+      "params": "8.2B",
+      "num_gpu": null,
+      "loaded_mb": 5328,
+      "gpu_share": 1.0,
+      "latency": {
+        "llm_first_token_ms": {
+          "n": 10,
+          "p50": 110.25135004520416,
+          "p95": 146.57145496010781,
+          "mean": 111.86986000537873,
+          "max": 147.46879994869232
+        },
+        "llm_full_ms": {
+          "n": 10,
+          "p50": 2327.756799995899,
+          "p95": 3001.13260999918,
+          "mean": 2394.609219992161,
+          "max": 3105.4706000089645
+        }
+      },
+      "tokens_per_s_mean": 47.37668935702287,
+      "json_valid": "10/10",
+      "vram_mb": 5465,
+      "replies": {
+        "ta01": "அந்த இண்டெக்ஸ் எப்படி டேட்டாவை பெறுவதில் உதவுகிறது என்பதை விளக்குங்கள்.",
+        "ta02": "சரி, நீங்கள் சொன்னது சரியாக உள்ளது. ஆனால், இது குறித்து நீங்கள் எது குறிப்பிட்டு விளக்கம் கொடுக்க முடியுமா?",
+        "ta03": "ஏபிஐ பற்றி நீங்கள் சொன்னது சரியாக உள்ளது. ஆனால் அது எப்படி செயல்படுகிறது என்பதை விளக்க முடியுமா?",
+        "ta04": "பதிப்பு கட்டுப்பாட்டு மென்பொருள் பயன்பாடு பற்றி மேலும் விவரிக்க முடியுமா?",
+        "ta05": "ரிகர்ஷனில் எந்த நிபந்தனை குறிப்பிட்டு விட்டீர்களா? அதை எப்படி செயல்படுத்துவீர்கள்?",
+        "ta06": "கிளவுட் கம்ப்யூட்டிங் பற்றி மேலும் விரிவாக விளக்கம் கொடுக்க முடியுமா?",
+        "ta07": "பிரைமரி கீ ஒரு தொடர் எண்களை கொண்டதா இல்லையா என்பதை தெளிவுபடுத்துங்கள்.",
+        "ta08": "பைனரி சர்ச் எவ்வாறு செயல்படுகிறது என்பதை மேலும் விளக்குங்கள்?",
+        "ta09": "நானூற்று நான்கு என்ற பெயரின் பொருளை மீண்டும் விளக்குங்கள்.",
+        "ta10": "ஓரியண்டட் புரோகிராமிங் என்பது என்ன பயன் கொடுக்கிறது என்பதை விளக்கும் முடியுமா?"
+      }
+    },
+    {
+      "model": "qwen3.5:9b",
+      "lang": "ta",
+      "quant": "Q4_K_M",
+      "params": "9.0B",
+      "num_gpu": null,
+      "loaded_mb": 5347,
+      "gpu_share": 1.0,
+      "latency": {
+        "llm_first_token_ms": {
+          "n": 10,
+          "p50": 248.00644999742508,
+          "p95": 255.28572492599488,
+          "mean": 230.90296000242233,
+          "max": 258.51109993457794
+        },
+        "llm_full_ms": {
+          "n": 10,
+          "p50": 1700.5000999569893,
+          "p95": 2006.0037749946118,
+          "mean": 1718.0956599831582,
+          "max": 2024.296499967575
+        }
+      },
+      "tokens_per_s_mean": 43.905078381189874,
+      "json_valid": "10/10",
+      "vram_mb": 6327,
+      "replies": {
+        "ta01": "நன்றாக உள்ளது. இந்த இண்டெக்ஸ் எப்படி உருவாக்கப்படுகிறது என்பதைச் சொல்ல முடியுமா?",
+        "ta02": "நன்றி, அது சரியான விளக்கம். இப்போது அடுத்த கேள்விக்குச் செல்கிறேன்.",
+        "ta03": "அது சரியான வரையறை. API-யின் முக்கிய பணிகள் என்னவென்று சொல்லுங்கள்.",
+        "ta04": "நீங்கள் குறிப்பிட்ட 'கிட்' என்பது Git-ஐக் குறிக்கிறதா? அந்தத் திட்டத்தில் நீங்கள் எவ்வாறு பணியாற்றினீர்கள்?",
+        "ta05": "நீங்கள் கூறியதைப் போலவே, மீள் அழைப்பு மற்றும் நிறுத்த நிபந்தனை இருக்க வேண்டும். இது சரியான புரிதல்.",
+        "ta06": "நீங்கள் சொன்ன வரையறை சரியானது. மேலும், கிளவுட் சேவைகளின் முக்கிய வகைகள் என்ன என்பதைச் சுருக்கமாகச் சொல்லுங்களா?",
+        "ta07": "நன்றி, அது சரியான புரிதல். இப்போது அடுத்த கேள்வி.",
+        "ta08": "அது சரியான கருத்து. இதை ஒரு எளிய உதாரணத்தோடு விளக்கலாமா?",
+        "ta09": "சரியாக உள்ளது, 404 என்பது கோப்பு காணப்படவில்லை எனக் குறிக்கும். இதனைத் தொடர்ந்து என்ன கேட்க வேண்டும்?",
+        "ta10": "நீங்கள் சொன்னது சரியானது, ஆனால் மேலும் எடுத்துக்காட்டுகள் கொடுத்தால் நன்றாக இருக்கும். நீங்கள் அதைச் சொல்ல முடியுமா?"
+      }
+    },
+    {
+      "model": "qwen2.5:7b",
+      "lang": "ta",
+      "quant": "Q4_K_M",
+      "params": "7.6B",
+      "num_gpu": null,
+      "loaded_mb": 4535,
+      "gpu_share": 1.0,
+      "latency": {
+        "llm_first_token_ms": {
+          "n": 10,
+          "p50": 87.25349998474121,
+          "p95": 96.99229497909546,
+          "mean": 84.50077999830246,
+          "max": 97.01789999008179
+        },
+        "llm_full_ms": {
+          "n": 10,
+          "p50": 2498.990649998188,
+          "p95": 3735.524199980498,
+          "mean": 2586.0021999835967,
+          "max": 4144.722699999809
+        }
+      },
+      "tokens_per_s_mean": 50.23881386760644,
+      "json_valid": "10/10",
+      "vram_mb": 4635,
+      "replies": {
+        "ta01": "உங்கள் தெரிவித்த கேள்வியில் மேலும் தகவல்கள் உள்ளன? உதாரணத்தாக, இண்டெக்ஸ்கள் எப்படியாக உருவாக்கப்படுகின்றன என்பதை கூறலாமா?",
+        "ta02": "உங்கள் தெரிவித்த விளக்கம் தவறவில்லை. குறிப்பாக க்யூ என்ற தரவு வரிசையில் எவ்வளவு தேவை உள்ளது என்று என்ன எடுத்து கொள்வது என்ன?",
+        "ta03": "ஏபிஐ என்னை மேலும் விரிவாக விளங்கவும்.",
+        "ta04": "கிட்டு மாற்றங்களின் விரிவு என்று கூறினால் எனக்கு வலியுற்று இருக்கும்.",
+        "ta05": "அந்த விளக்கம் தோலாக இருந்தது. ரிகர்ஷன் செயல்பாட்டு என்ன வேறு பார்த்து கொள்வோம்?",
+        "ta06": "நீங்கள் கூறியது தோலினால் உண்மையாக இருக்கிறது. சர்வர்களை வாங்காமல் இணையத்தில் வழங்கி உபயோகிக்க என்ன பயனுள்ள முக்கிய முறைகள் உள்ளன? உதாரணங்து காவல் செய்யவும்.",
+        "ta07": "பிரைமரி கீ என்னை விரிவாக விரிவாக்கி கூறி வேண்டுமா?",
+        "ta08": "பாதியாகப் பிரித்து தேடும் என்று கூறியது விரைவாக சரியாக இருக்கும். இது என்ன வழியாக செய்யும் போன்ற தகவல் கூற விரும்புகிறேன்.",
+        "ta09": "நீங்கள் சரியாக விட்டது. என்ன இதன் உபயோகம் எவ்வளவு விளக்கப்பட்டது?",
+        "ta10": "உங்கள் தெரிவித்த கூற்று கோருங்கள், செயல்பாடுகள் எவையேன் என்னை விரிவாக விளங்குவது வேண்டும்."
+      }
+    },
+    {
+      "model": "qwen3:14b",
+      "lang": "ta",
+      "quant": "Q4_K_M",
+      "params": "14.8B",
+      "num_gpu": null,
+      "loaded_mb": 9695,
+      "gpu_share": 0.604,
+      "latency": {
+        "llm_first_token_ms": {
+          "n": 10,
+          "p50": 455.10339999198914,
+          "p95": 513.2400100529194,
+          "mean": 441.9189399957657,
+          "max": 514.8574000597
+        },
+        "llm_full_ms": {
+          "n": 10,
+          "p50": 16914.69420003891,
+          "p95": 24031.349240052703,
+          "mean": 17583.03953001499,
+          "max": 25990.489400029182
+        }
+      },
+      "tokens_per_s_mean": 5.829229748508701,
+      "json_valid": "10/10",
+      "vram_mb": 5989,
+      "replies": {
+        "ta01": "உங்கள் விளக்கம் மிகவும் தெளிவாக உள்ளது. இண்டெக்ஸ் எவ்வாறு தொடர்புடைய தரவுகளை குறிப்பிடுகிறது என்பதை விளக்குங்கள்.",
+        "ta02": "அதன் மூலம் நீங்கள் ஒரு உதாரணம் கொடுக்க முடியுமா?",
+        "ta03": "அது என்ன செய்யும் என்பதை விளக்குங்கள்?",
+        "ta04": "இதன் மூலம் குறிப்பிட்ட மாற்றங்களை எப்படி கண்டறிய முடியும் என்பதை விளக்குங்கள்.",
+        "ta05": "அந்த நிறுத்தும் நிபந்தனை எப்படி செயல்படுகிறது என்பதை விளக்குங்கள்.",
+        "ta06": "அதன் மூலம் நாம் என்ன சேவைகளை பெற முடியும் என்பதை விளக்குங்கள்.",
+        "ta07": "அது ஒரு தரவுத்தளத்தில் உள்ள போல்டு வரிசையில் எவ்வாறு பயன்படுத்தப்படுகிறது என்பதை விளக்குங்கள்.",
+        "ta08": "அது எப்படி செயல்படுகிறது என்பதை மேலும் விளக்குங்கள்.",
+        "ta09": "நீங்கள் கூறியது சரியான பொருளை கொண்டிருக்கிறது. இந்த குறியீடு எப்போது பயன்படுத்தப்படுகிறது?",
+        "ta10": "அதன் மூலம் என்ன நன்மை கிடைக்கும் என்பதை விளக்குங்கள்."
+      }
+    }
+  ],
+  "pipeline": [
+    {
+      "lang": "en",
+      "llm": "qwen3:8b",
+      "stt_variant": "turbo-int8",
+      "stt": "faster-whisper/faster-whisper-large-v3-turbo (cuda, int8_float16)",
+      "tts": "kokoro-v1.0/kokoro-v1.0.onnx (af_heart, cpu x8)",
+      "eot_silence_ms": 1800.0,
+      "turns": 30,
+      "eot_closed_by_silence": "30/30",
+      "json_valid": "30/30",
+      "llm_gpu_share": 1.0,
+      "latency": {
+        "vad_detect_ms": {
+          "n": 30,
+          "p50": 1824.1368389495715,
+          "p95": 1824.150663556553,
+          "mean": 1824.1381550760518,
+          "max": 1824.1538781691604
+        },
+        "stt_final_ms": {
+          "n": 30,
+          "p50": 348.7435500025749,
+          "p95": 357.9206050217152,
+          "mean": 344.4470133423805,
+          "max": 363.2602000236511
+        },
+        "llm_first_token_ms": {
+          "n": 30,
+          "p50": 62.45019996166229,
+          "p95": 66.96136995553971,
+          "mean": 61.74175667762756,
+          "max": 75.75740003585815
+        },
+        "llm_full_ms": {
+          "n": 30,
+          "p50": 1132.6132999658585,
+          "p95": 1247.16951995492,
+          "mean": 1139.700443347295,
+          "max": 1276.523400068283
+        },
+        "tts_first_audio_ms": {
+          "n": 30,
+          "p50": 453.56635004282,
+          "p95": 832.2192749500275,
+          "mean": 487.15989333788553,
+          "max": 851.9103000164032
+        },
+        "eot_to_first_audio_ms": {
+          "n": 30,
+          "p50": 1124.215550005436,
+          "p95": 1630.263594967127,
+          "mean": 1168.551163339615,
+          "max": 1658.619600057602
+        },
+        "speech_end_to_first_audio_ms": {
+          "n": 30,
+          "p50": 2948.3502109592628,
+          "p95": 3454.4068426475083,
+          "mean": 2992.6893184156665,
+          "max": 3482.7672378582643
+        }
+      },
+      "wer": 0.0,
+      "cer": 0.0,
+      "gpu_peak_used_mb": 7039,
+      "gpu_total_mb": 8151
+    },
+    {
+      "lang": "en",
+      "llm": "qwen3.5:9b",
+      "stt_variant": "turbo-int8",
+      "stt": "faster-whisper/faster-whisper-large-v3-turbo (cuda, int8_float16)",
+      "tts": "kokoro-v1.0/kokoro-v1.0.onnx (af_heart, cpu x8)",
+      "eot_silence_ms": 1800.0,
+      "turns": 30,
+      "eot_closed_by_silence": "30/30",
+      "json_valid": "30/30",
+      "llm_gpu_share": 1.0,
+      "latency": {
+        "vad_detect_ms": {
+          "n": 30,
+          "p50": 1824.1365989713395,
+          "p95": 1824.1438072273836,
+          "mean": 1824.13652378541,
+          "max": 1824.150346391799
+        },
+        "stt_final_ms": {
+          "n": 30,
+          "p50": 345.2582500576973,
+          "p95": 361.85164496898653,
+          "mean": 344.0605833411217,
+          "max": 363.3386000394821
+        },
+        "llm_first_token_ms": {
+          "n": 30,
+          "p50": 251.77640002965927,
+          "p95": 259.75332498550415,
+          "mean": 246.57392666737238,
+          "max": 264.02119994163513
+        },
+        "llm_full_ms": {
+          "n": 30,
+          "p50": 1578.271399974823,
+          "p95": 1880.841119992733,
+          "mean": 1595.236933330695,
+          "max": 1885.4824999570847
+        },
+        "tts_first_audio_ms": {
+          "n": 30,
+          "p50": 653.6697500348091,
+          "p95": 1246.3332350075245,
+          "mean": 684.9034633358319,
+          "max": 1292.829999923706
+        },
+        "eot_to_first_audio_ms": {
+          "n": 30,
+          "p50": 1681.0411999821663,
+          "p95": 2473.553455007076,
+          "mean": 1696.0848766644797,
+          "max": 2514.008499979973
+        },
+        "speech_end_to_first_audio_ms": {
+          "n": 30,
+          "p50": 3505.1757452131887,
+          "p95": 4297.693319185512,
+          "mean": 3520.2214004498896,
+          "max": 4338.153240325815
+        }
+      },
+      "wer": 0.0,
+      "cer": 0.0,
+      "gpu_peak_used_mb": 7911,
+      "gpu_total_mb": 8151
+    },
+    {
+      "lang": "ta",
+      "llm": "qwen3:8b",
+      "stt_variant": "indic-conformer",
+      "stt": "indic-conformer-600m (ta, ctc, CPU)",
+      "tts": "indic-parler-tts (cuda, torch.float16), streamed 0.5 s chunks",
+      "eot_silence_ms": 1800.0,
+      "turns": 30,
+      "eot_closed_by_silence": "30/30",
+      "json_valid": "30/30",
+      "llm_gpu_share": 1.0,
+      "latency": {
+        "vad_detect_ms": {
+          "n": 30,
+          "p50": 1824.1456525251542,
+          "p95": 1824.174073365939,
+          "mean": 1824.1494582383518,
+          "max": 1824.2313356496777
+        },
+        "stt_final_ms": {
+          "n": 30,
+          "p50": 359.2471999526024,
+          "p95": 465.5657550632954,
+          "mean": 370.7005266626676,
+          "max": 502.6061999797821
+        },
+        "llm_first_token_ms": {
+          "n": 30,
+          "p50": 418.02880001068115,
+          "p95": 591.1699850082398,
+          "mean": 402.44745666186014,
+          "max": 664.4266999959946
+        },
+        "llm_full_ms": {
+          "n": 30,
+          "p50": 5039.913049995899,
+          "p95": 8834.92434502244,
+          "mean": 5307.256966678301,
+          "max": 9581.484499931335
+        },
+        "tts_first_audio_ms": {
+          "n": 30,
+          "p50": 1095.770799934864,
+          "p95": 1376.0120600283146,
+          "mean": 1085.611049993833,
+          "max": 1506.1899000406265
+        },
+        "eot_to_first_audio_ms": {
+          "n": 30,
+          "p50": 3546.819050014019,
+          "p95": 4715.257349938154,
+          "mean": 3545.96416331927,
+          "max": 4830.137799978256
+        },
+        "speech_end_to_first_audio_ms": {
+          "n": 30,
+          "p50": 5370.954719011001,
+          "p95": 6539.4204428247895,
+          "mean": 5370.113621557622,
+          "max": 6654.287895578384
+        }
+      },
+      "wer": 0.20952380952380953,
+      "cer": 0.04395604395604396,
+      "gpu_peak_used_mb": 8140,
+      "gpu_total_mb": 8151
+    },
+    {
+      "lang": "ta",
+      "llm": "qwen3.5:9b",
+      "stt_variant": "indic-conformer",
+      "stt": "indic-conformer-600m (ta, ctc, CPU)",
+      "tts": "indic-parler-tts (cuda, torch.float16), streamed 0.5 s chunks",
+      "eot_silence_ms": 1800.0,
+      "turns": 30,
+      "eot_closed_by_silence": "30/30",
+      "json_valid": "30/30",
+      "llm_gpu_share": 1.0,
+      "latency": {
+        "vad_detect_ms": {
+          "n": 30,
+          "p50": 1824.1583148973855,
+          "p95": 1824.1763903930841,
+          "mean": 1824.1563927854863,
+          "max": 1824.2339435045092
+        },
+        "stt_final_ms": {
+          "n": 30,
+          "p50": 364.40545004606247,
+          "p95": 479.7867999970913,
+          "mean": 374.1491033236186,
+          "max": 539.0951000452042
+        },
+        "llm_first_token_ms": {
+          "n": 30,
+          "p50": 1232.1264500021935,
+          "p95": 1558.6786600351334,
+          "mean": 1198.990600013733,
+          "max": 1723.2070000171661
+        },
+        "llm_full_ms": {
+          "n": 30,
+          "p50": 6947.284399986267,
+          "p95": 9451.20827000141,
+          "mean": 6846.193046661218,
+          "max": 9608.000200033188
+        },
+        "tts_first_audio_ms": {
+          "n": 30,
+          "p50": 1203.3670499920845,
+          "p95": 1402.0960550308228,
+          "mean": 1218.814090001583,
+          "max": 1531.9881999492645
+        },
+        "eot_to_first_audio_ms": {
+          "n": 30,
+          "p50": 3776.1453999876976,
+          "p95": 4985.156290018558,
+          "mean": 3895.9803566654523,
+          "max": 5311.820199966431
+        },
+        "speech_end_to_first_audio_ms": {
+          "n": 30,
+          "p50": 5600.315398287961,
+          "p95": 6809.310595978942,
+          "mean": 5720.136749450938,
+          "max": 7135.955142772026
+        }
+      },
+      "wer": 0.20952380952380953,
+      "cer": 0.04395604395604396,
+      "gpu_peak_used_mb": 7993,
+      "gpu_total_mb": 8151
+    }
+  ],
+  "captions": {
+    "model": "sherpa-onnx/sherpa-onnx-streaming-zipformer-en-2023-06-26 (cpu x2)",
+    "chunk_ms": 100.0,
+    "partial_delay": {
+      "caption_partial_delay_ms": {
+        "n": 602,
+        "p50": 416.0653837323189,
+        "p95": 537.3781798958778,
+        "mean": 404.92652606429453,
+        "max": 578.3394473791122
+      }
+    },
+    "chunk_compute": {
+      "chunk_compute_ms": {
+        "n": 1438,
+        "p50": 0.14420002698898315,
+        "p95": 17.363299995660782,
+        "mean": 5.18860695375355,
+        "max": 30.257099986076355
+      }
+    },
+    "wer": 0.18705035971223022
+  }
+}
