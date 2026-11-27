@@ -1,0 +1,32 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{cs,csx}]
+indent_size = 4
+dotnet_sort_system_directives_first = true
+csharp_style_namespace_declarations = file_scoped:error
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_prefer_braces = true:warning
+dotnet_style_readonly_field = true:warning
+# async methods must take a CancellationToken where possible
+dotnet_diagnostic.CA2016.severity = error
+# no .Result / .Wait()
+dotnet_diagnostic.CA1849.severity = error
+# ConfigureAwait is not needed in ASP.NET Core
+dotnet_diagnostic.CA2007.severity = none
+
+[*.py]
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.ps1]
+end_of_line = crlf

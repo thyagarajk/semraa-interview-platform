@@ -1,0 +1,78 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve",
+    "paths": {
+      "@semraa/api-client": ["./projects/api-client/src/public-api.ts"],
+      "@semraa/auth": ["./projects/auth/src/public-api.ts"],
+      "@semraa/interview-runtime": ["./projects/interview-runtime/src/public-api.ts"],
+      "@semraa/reporting": ["./projects/reporting/src/public-api.ts"],
+      "@semraa/ui-kit": ["./projects/ui-kit/src/public-api.ts"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "strictStandalone": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/candidate/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/candidate/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/college/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/college/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ui-kit/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ui-kit/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/auth/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/auth/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/api-client/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/api-client/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/interview-runtime/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/interview-runtime/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/reporting/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/reporting/tsconfig.spec.json"
+    }
+  ]
+}
